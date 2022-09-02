@@ -49,7 +49,7 @@ export const executeAllTransactions = async (
 export const sendToken = async (wallet, amount, toPubkeyAddr) => {
   const provider = await getProvider(wallet);
 	const program = new Program(idl, programID, provider);
-  const token_amount = new anchor.BN(amount * 1000000);
+  const token_amount = new anchor.BN(amount).mul(new anchor.BN(1e6));
   const toPubkey = new PublicKey(toPubkeyAddr);
   const txs = [];
   const transaction = new Transaction();
